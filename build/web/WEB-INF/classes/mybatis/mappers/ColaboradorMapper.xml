@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="colaborador">
+    <select id="obtenerColaboradores" resultType="pojo.Colaborador" >
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idRol, Rol.nombre as rol
+        FROM Colaborador
+        INNER JOIN Rol ON Colaborador.idRol = Rol.id;
+    </select>
+    
+    <select id="obtenerPorRol" resultType="pojo.Colaborador">
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idRol, Rol.nombre as rol
+        FROM Colaborador
+        INNER JOIN Rol ON Colaborador.idRol = Rol.id
+        WHERE Rol.nombre = #{rol};
+    </select>
+    
+    <select id="recuperarPassword" resultType="String">
+        SELECT password
+        FROM Colaborador
+        WHERE correo = #{correo};
+    </select>
+    
+    <delete id="eliminar">
+        DELETE FROM Colaborador WHERE id = #{id};
+    </delete>
+    
+    <insert id="insertar" parameterType="pojo.Colaborador">
+        INSERT INTO Colaborador (nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idRol) VALUES (#{nombre}, #{apellidoPaterno}, #{apelidoMaterno}, 
+        #{correo}, #{curp}, #{numeroPersonal}, #{numero}, #{colonia}, #{cp}, #{telefono}, #{password}, #{foto}, #{idRol});
+    </insert>
+    
+</mapper>
