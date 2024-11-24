@@ -5,8 +5,10 @@
  */
 package ws;
 
+import com.google.gson.Gson;
 import dominio.ImpColaborador;
 import java.util.List;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -43,28 +45,30 @@ public class WSColaborador {
         return ImpColaborador.obtenerColaboradores();
     }
     
-    @Path("obtenerPorRol/{rol}")
+    @Path("obtenerPorRol/{idRol}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Colaborador> obtenerPorRol (@PathParam("rol") String rol) {
-        //TODO
-        return null;
+    public List<Colaborador> obtenerPorRol (@PathParam("idRol") Integer idRol) {
+        if(idRol != null && idRol > 0)
+            return ImpColaborador.obtenerColaboradoresPorRol(idRol);
+        throw new BadRequestException();
     } 
     
     @Path("noAsignados")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Colaborador> obtenerNoAsigados () {
-        //TODO
-        return null;
+        return ImpColaborador.obtenerConductoresSinAsignar();
     } 
     
-    @Path("recuperarPassword")
+    @Path("recuperarPassword/{correo}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje recuperarPassword () {
-        //TODO
-        return null;
+    public String recuperarPassword (@PathParam("correo") String correo) {
+        if(correo != null){
+            return ImpColaborador.recuperarPassword(correo);
+        }
+        throw new BadRequestException();
     } 
     
     @Path("registrar")
@@ -72,8 +76,13 @@ public class WSColaborador {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Mensaje registrarColaborador (String jsonColaborador) {
-        //TODO
-        return null;
+        try {
+        Gson gson = new Gson();
+        Colaborador colaborador = gson.fromJson(jsonColaborador, Colaborador.class);
+        return ImpColaborador.registrarColaborador(colaborador);
+        } catch (Exception e) {
+            throw new BadRequestException();
+        }
     } 
     
     @Path("editar")
@@ -81,16 +90,22 @@ public class WSColaborador {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Mensaje editarColaborador (String jsonColaborador) {
-        //TODO
-        return null;
+        try {
+        Gson gson = new Gson();
+        Colaborador colaborador = gson.fromJson(jsonColaborador, Colaborador.class);
+        return ImpColaborador.editarColaborador(colaborador);
+        } catch (Exception e) {
+            throw new BadRequestException();
+        }
     } 
     
-    @Path("eliminar/{id}")
+    @Path("eliminar/{numeroPersonal}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarColaborador (@PathParam ("id") String id) {
-        //TODO
-        return null;
+    public Mensaje eliminarColaborador (@PathParam ("numeroPersonal") String numeroPersonal) {
+        if(numeroPersonal != null && !numeroPersonal.isEmpty())
+            return ImpColaborador.eliminarColaborador(numeroPersonal);
+        throw new BadRequestException();
     } 
     
 }

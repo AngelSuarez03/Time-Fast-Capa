@@ -25,13 +25,16 @@ public class Colaborador {
     private String password;
     private String foto;
     private Integer idRol;
-    private Integer rol;
+    private Integer idUnidad;
+    private String vin;
+    private String nii;
+    private String rol;
     
     public Colaborador() {
         
     }
 
-    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, String foto, Integer idRol, Integer rol) {
+    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, String foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -46,6 +49,9 @@ public class Colaborador {
         this.password = password;
         this.foto = foto;
         this.idRol = idRol;
+        this.idUnidad = idUnidad;
+        this.vin = vin;
+        this.nii = nii;
         this.rol = rol;
     }
 
@@ -161,12 +167,36 @@ public class Colaborador {
         this.idRol = idRol;
     }
 
-    public Integer getRol() {
+    public Integer getIdUnidad() {
+        return idUnidad;
+    }
+
+    public void setIdUnidad(Integer idUnidad) {
+        this.idUnidad = idUnidad;
+    }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
+    public String getNii() {
+        return nii;
+    }
+
+    public void setNii(String nii) {
+        this.nii = nii;
+    }
+
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Integer rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
-    
+       
 }
