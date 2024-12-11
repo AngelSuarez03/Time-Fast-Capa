@@ -18,8 +18,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM Envio WHERE numeroGuia = #{numeroGuia};
     </select>
     
-    <select>
-        SELECT * FROM Envio
-    </select>
-    
 </mapper>
