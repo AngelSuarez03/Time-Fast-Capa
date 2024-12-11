@@ -6,7 +6,6 @@
 package ws;
 
 import com.google.gson.Gson;
-import dominio.ImpColaborador;
 import dominio.ImpUnidad;
 import java.util.List;
 import javax.ws.rs.BadRequestException;
@@ -21,7 +20,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-import pojo.Colaborador;
 import pojo.Mensaje;
 import pojo.Unidad;
 
@@ -46,7 +44,7 @@ public class WSUnidad {
         return ImpUnidad.obtenerUnidades();
     }
     
-    @Path("obtenerUnidadesPorEstatus/{estatus}")
+    @Path("obtenerUnidadesEstatus/{estatus}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Unidad> obtenerUnidadesPorEstatus(@PathParam("estatus") String estatus) {

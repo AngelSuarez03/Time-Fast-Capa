@@ -38,14 +38,14 @@ public class WSColaborador {
         
     }
     
-    @Path("obtenerTodos")
+    @Path("obtenerColaboradores")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Colaborador> obtenerColaborador () {
         return ImpColaborador.obtenerColaboradores();
     }
     
-    @Path("obtenerPorRol/{idRol}")
+    @Path("obtenerColaboradoresRol/{idRol}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Colaborador> obtenerPorRol (@PathParam("idRol") Integer idRol) {
@@ -54,14 +54,14 @@ public class WSColaborador {
         throw new BadRequestException();
     } 
     
-    @Path("noAsignados")
+    @Path("obtenerColaboradoresNoAsignados")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Colaborador> obtenerNoAsigados () {
         return ImpColaborador.obtenerConductoresSinAsignar();
     } 
     
-    @Path("recuperarPassword/{correo}")
+    @Path("recuperarContrasenia/{correo}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String recuperarPassword (@PathParam("correo") String correo) {
@@ -71,7 +71,7 @@ public class WSColaborador {
         throw new BadRequestException();
     } 
     
-    @Path("registrar")
+    @Path("registrarColaborador")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ public class WSColaborador {
         }
     } 
     
-    @Path("editar")
+    @Path("editarColaborador")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -99,7 +99,7 @@ public class WSColaborador {
         }
     } 
     
-    @Path("eliminar/{numeroPersonal}")
+    @Path("eliminarColaborador /{numeroPersonal}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje eliminarColaborador (@PathParam ("numeroPersonal") String numeroPersonal) {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="envio">
+    <select id="envios" resultType="pojo.Envio" >
+        SELECT numeroGuia, calle, colonia, numero, cp, ciudad, costo, destino, motivo
+        FROM Envio;
+    </select>
+    
+    <insert id="insertar" parameterType="pojo.Envio">
+        INSERT (numeroGuia, calle, colonia, numero, cp, ciudad, costo, destino, motivo) 
+        INTO Envio VALUES (#{numeroGuia}, #{calle}, #{colonia}, #{numero}, #{cp}, #{ciudad}, #{costo}, #{destino}, #{motivo});
+    </insert>
+    
+    <select id="obtenerPorNoGuia" resultType="pojo.Envio">
+        SELECT * FROM Envio WHERE numeroGuia = #{numeroGuia};
+    </select>
+    
+    <select>
+        SELECT * FROM Envio
+    </select>
+    
+</mapper>

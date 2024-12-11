@@ -30,7 +30,7 @@ public class WSLogin {
         
     }
     
-    @Path("colaborador")
+    @Path("validarCredenciales")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public LoginColaborador inicioSesionColaborador (@FormParam("numeroPersonal") String numeroPersonal, @FormParam("password") String password) {
