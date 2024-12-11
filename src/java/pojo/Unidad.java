@@ -21,12 +21,14 @@ public class Unidad {
     private String motivo;
     private Integer idTipo;
     private String tipo;
+    private Integer idColaborador;
+    private String nombreColaborador;
     
     public Unidad() {
         
     }
 
-    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, String estatus, String motivo, Integer idTipo, String tipo) {
+    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, String estatus, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreColaborador) {
         this.id = id;
         this.nii = nii;
         this.vin = vin;
@@ -37,6 +39,8 @@ public class Unidad {
         this.motivo = motivo;
         this.idTipo = idTipo;
         this.tipo = tipo;
+        this.idColaborador = idColaborador;
+        this.nombreColaborador = nombreColaborador;
     }
 
     public Integer getId() {
@@ -118,5 +122,23 @@ public class Unidad {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-        
+
+    public Integer getIdColaborador() {
+        return idColaborador;
+    }
+
+    public void setIdColaborador(Integer idColaborador) {
+        this.idColaborador = idColaborador;
+    }
+
+    public String getNombreColaborador() {
+        return nombreColaborador;
+    }
+
+    public void setNombreColaborador(String nombreColaborador) {
+        this.nombreColaborador = nombreColaborador;
+    }
+
+    
+            
 }
