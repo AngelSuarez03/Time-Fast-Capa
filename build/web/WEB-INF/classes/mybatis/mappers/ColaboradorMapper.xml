@@ -4,11 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="colaborador">
-    <select id="obtenerColaboradores" resultType="pojo.Colaborador" >
-        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idUnidad,idRol, Rol.nombre as rol
-        FROM Colaborador
-        INNER JOIN Rol ON Colaborador.idRol = Rol.id;
+    <select id="obtenerColaboradores" resultType="pojo.Colaborador">
+        SELECT 
+        Colaborador.id, 
+        Colaborador.nombre, 
+        Colaborador.apellidoPaterno, 
+        Colaborador.apellidoMaterno, 
+        Colaborador.correo, 
+        Colaborador.curp, 
+        Colaborador.numeroPersonal, 
+        Colaborador.password, 
+        Colaborador.foto, 
+        Colaborador.idRol, 
+        Colaborador.idUnidad, 
+        Rol.nombre AS rol
+        FROM 
+        Colaborador
+        INNER JOIN 
+        Rol ON Colaborador.idRol = Rol.id;
     </select>
+
     
     <select id="obtenerPorRol" parameterType="Int" resultType="pojo.Colaborador">
         SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idRol, Rol.nombre as rol
