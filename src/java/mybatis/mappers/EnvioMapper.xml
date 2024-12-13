@@ -18,10 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM Envio WHERE numeroGuia = #{numeroGuia};
     </select>
     
-    <select id="envios" resultType="pojo.Envio" parameterType="String">
+    <select id="obtenerEnviosColaborador" resultType="pojo.Envio" parameterType="String">
         SELECT numeroGuia, calle, colonia, numero, cp, ciudad, costo, destino, motivo
         FROM Envio
-        WHERE ;
+        WHERE numeroGuia = #{numeroGuia};
     </select>
     
 </mapper>

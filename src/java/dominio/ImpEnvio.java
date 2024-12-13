@@ -29,7 +29,7 @@ public class ImpEnvio {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
         List<Envio> envios = null;
         if(conexionBD != null) {
-            envios = conexionBD.selectList("envio. envios");
+            envios = conexionBD.selectList("envio. obtenerEnviosColaborador");
         }
         return envios;
     }
