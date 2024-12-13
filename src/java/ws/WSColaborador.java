@@ -99,7 +99,7 @@ public class WSColaborador {
         }
     } 
     
-    @Path("eliminarColaborador /{numeroPersonal}")
+    @Path("eliminarColaborador/{numeroPersonal}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje eliminarColaborador (@PathParam ("numeroPersonal") String numeroPersonal) {
