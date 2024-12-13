@@ -16,7 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         Colaborador.password, 
         Colaborador.foto, 
         Colaborador.idRol, 
-        Colaborador.idUnidad, 
+        Colaborador.idUnidad,
+        Colaborador.numLicencia, 
         Rol.nombre AS rol
         FROM 
         Colaborador
