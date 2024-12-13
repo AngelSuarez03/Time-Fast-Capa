@@ -29,16 +29,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="editar" parameterType="pojo.Unidad">
         UPDATE Unidad
         SET 
-        nii = #{nii}, 
-        vin = #{vin}, 
+        nii = #{nii},  
         marca = #{marca}, 
         modelo = #{modelo}, 
         anio = #{anio}, 
-        estatus = #{estatus}, 
+        estado = #{estado},
         motivo = #{motivo}, 
-        idTipo = #{idTipo}
+        idTipo = #{idTipo}, 
+        nombreEliminacion = #{nombreEliminacion}
         WHERE id = #{id};
-    </update>
+    </update> 
 
     <delete id="eliminar" parameterType="String">
         DELETE FROM Unidad
