@@ -44,11 +44,11 @@ public class WSUnidad {
         return ImpUnidad.obtenerUnidades();
     }
     
-    @Path("obtenerUnidadesEstatus/{estatus}")
+    @Path("obtenerUnidadesEstatus")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Unidad> obtenerUnidadesPorEstatus(@PathParam("estatus") String estatus) {
-        return ImpUnidad.obtenerUnidadesPorEstatus(estatus);
+    public List<Unidad> obtenerUnidadesPorEstatus() {
+        return ImpUnidad.obtenerUnidadesPorEstatus();
     }
     
     @Path("registrar")

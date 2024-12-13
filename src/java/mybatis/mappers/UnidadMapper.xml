@@ -15,10 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="obtenerUnidadesPorEstatus" resultType="pojo.Unidad">
-        SELECT Unidad.*, Tipo.nombre 
-        FROM Unidad
-        INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
-        WHERE idEstatus = #{estatus};
+        SELECT u.*
+        FROM Unidad u
+        LEFT JOIN Colaborador c ON c.idUnidad = u.id
+        WHERE c.idUnidad IS NULL;
     </select>
     
     <insert id="registrar" parameterType="pojo.Unidad">

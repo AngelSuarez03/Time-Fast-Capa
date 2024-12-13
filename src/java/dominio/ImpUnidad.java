@@ -29,11 +29,11 @@ public class ImpUnidad {
     }
     
     //Obtener todas las unidades dependiendo del estatus que reciba
-    public static List<Unidad> obtenerUnidadesPorEstatus(String estatus) {
+    public static List<Unidad> obtenerUnidadesPorEstatus() {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
         List<Unidad> unidades = null;
         if(conexionBD != null)
-            unidades = conexionBD.selectList("unidad.obtenerUnidadesPorEstatus",estatus);
+            unidades = conexionBD.selectList("unidad.obtenerUnidadesPorEstatus");
         return unidades;
     }
     
