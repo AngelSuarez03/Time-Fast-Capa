@@ -85,15 +85,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         correo = #{correo}, 
         curp = #{curp}, 
         numeroPersonal = #{numeroPersonal}, 
-        numero = #{numero}, 
-        colonia = #{colonia}, 
-        cp = #{cp}, 
-        telefono = #{telefono}, 
         password = #{password}, 
         foto = #{foto}, 
+        numLicencia = #{numLicencia}, 
         idUnidad = #{idUnidad}, 
         idRol = #{idRol}
         WHERE numeroPersonal = #{numeroPersonal};
     </update>
+
     
 </mapper>
