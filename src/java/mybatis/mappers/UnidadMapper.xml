@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador 
         FROM Unidad
         INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
-        INNER JOIN Colaborador c ON Unidad.id = c.idUnidad;
+        LEFT JOIN Colaborador c ON Unidad.id = c.idUnidad;
     </select>
     
     <select id="obtenerUnidadesPorEstatus" resultType="pojo.Unidad">
@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="registrar" parameterType="pojo.Unidad">
-        INSERT INTO Unidad (nii, vin, marca, modelo, anio, estatus, motivo, idTipo) 
-        VALUES (#{nii}, #{vin}, #{marca}, #{modelo}, #{anio}, #{estatus}, #{motivo}, #{idTipo});
+        INSERT INTO Unidad (nii, vin, marca, modelo, anio, estado, motivo, idTipo, nombreEliminacion) 
+        VALUES (#{nii}, #{vin}, #{marca}, #{modelo}, #{anio}, #{estado}, #{motivo}, #{idTipo}, #{nombreEliminacion});
     </insert>
 
     <update id="editar" parameterType="pojo.Unidad">

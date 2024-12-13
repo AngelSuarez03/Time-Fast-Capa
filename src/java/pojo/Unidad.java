@@ -7,7 +7,7 @@ package pojo;
 
 /**
  *
- * @author USER
+ * @author reyes
  */
 public class Unidad {
     
@@ -17,40 +17,34 @@ public class Unidad {
     private String marca;
     private String modelo;
     private String anio;
-    private Integer idEstatus;
+    private String estado;
     private String motivo;
     private Integer idTipo;
     private String tipo;
     private Integer idColaborador;
-    private String nombreColaborador;
+    private String nombreEliminacion;
     private String nombre;
+    private String nombreColaborador;
     
     public Unidad() {
         
     }
 
-    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, Integer idEstatus, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreColaborador, String nombre) {
+    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, String estado, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreEliminacion, String nombre, String nombreColaborador) {
         this.id = id;
         this.nii = nii;
         this.vin = vin;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
-        this.idEstatus = idEstatus;
+        this.estado = estado;
         this.motivo = motivo;
         this.idTipo = idTipo;
         this.tipo = tipo;
         this.idColaborador = idColaborador;
+        this.nombreEliminacion = nombreEliminacion;
+        this.nombre = nombre;
         this.nombreColaborador = nombreColaborador;
-        this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public Integer getId() {
@@ -101,12 +95,12 @@ public class Unidad {
         this.anio = anio;
     }
 
-    public Integer getIdEstatus() {
-        return idEstatus;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getMotivo() {
@@ -141,6 +135,22 @@ public class Unidad {
         this.idColaborador = idColaborador;
     }
 
+    public String getNombreEliminacion() {
+        return nombreEliminacion;
+    }
+
+    public void setNombreEliminacion(String nombreEliminacion) {
+        this.nombreEliminacion = nombreEliminacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getNombreColaborador() {
         return nombreColaborador;
     }
@@ -148,5 +158,5 @@ public class Unidad {
     public void setNombreColaborador(String nombreColaborador) {
         this.nombreColaborador = nombreColaborador;
     }
-
+    
 }
