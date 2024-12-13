@@ -24,7 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         Rol ON Colaborador.idRol = Rol.id;
     </select>
 
-    
     <select id="obtenerPorRol" parameterType="Int" resultType="pojo.Colaborador">
         SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idRol, Rol.nombre as rol
         FROM Colaborador
@@ -50,10 +49,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
     
     <insert id="registrar" parameterType="pojo.Colaborador">
-        INSERT INTO Colaborador (nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idUnidad, idRol) VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, 
-        #{correo}, #{curp}, #{numeroPersonal}, #{numero}, #{colonia}, #{cp}, #{telefono}, #{password}, #{foto}, #{idUnidad}, #{idRol});
+        INSERT INTO Colaborador (nombre, apellidoPaterno, 
+        apellidoMaterno, 
+        correo, 
+        curp, 
+        numeroPersonal, 
+        password, 
+        foto, 
+        idUnidad, 
+        idRol
+        ) 
+        VALUES (
+        #{nombre}, 
+        #{apellidoPaterno}, 
+        #{apellidoMaterno}, 
+        #{correo}, 
+        #{curp}, 
+        #{numeroPersonal}, 
+        #{password}, 
+        #{foto}, 
+        #{idUnidad}, 
+        #{idRol}
+        );
     </insert>
-    
+
     <update id="editar" parameterType="pojo.Colaborador">
         UPDATE Colaborador
         SET 
