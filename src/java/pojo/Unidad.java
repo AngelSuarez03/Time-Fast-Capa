@@ -17,7 +17,7 @@ public class Unidad {
     private String marca;
     private String modelo;
     private String anio;
-    private String estatus;
+    private Integer idEstatus;
     private String motivo;
     private Integer idTipo;
     private String tipo;
@@ -28,14 +28,14 @@ public class Unidad {
         
     }
 
-    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, String estatus, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreColaborador) {
+    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, Integer idEstatus, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreColaborador) {
         this.id = id;
         this.nii = nii;
         this.vin = vin;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
-        this.estatus = estatus;
+        this.idEstatus = idEstatus;
         this.motivo = motivo;
         this.idTipo = idTipo;
         this.tipo = tipo;
@@ -91,12 +91,12 @@ public class Unidad {
         this.anio = anio;
     }
 
-    public String getEstatus() {
-        return estatus;
+    public Integer getIdEstatus() {
+        return idEstatus;
     }
 
-    public void setEstatus(String estatus) {
-        this.estatus = estatus;
+    public void setIdEstatus(Integer idEstatus) {
+        this.idEstatus = idEstatus;
     }
 
     public String getMotivo() {
@@ -139,6 +139,4 @@ public class Unidad {
         this.nombreColaborador = nombreColaborador;
     }
 
-    
-            
 }

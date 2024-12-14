@@ -5,16 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="unidad">
     <select id="obtenerUnidades" resultType="pojo.Unidad" >
-        SELECT Unidad.*, Tipo.nombre, CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador 
+        SELECT 
+        Unidad.*, 
+        Tipo.nombre, 
+        CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador 
         FROM Unidad
         INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
         INNER JOIN Colaborador c ON Unidad.id = c.idUnidad;
     </select>
     
-    <select id="obtenerUnidadesPorEstatus" resultType="pojo.Unidad" >
-        SELECT Unidad.*, Tipo.nombre FROM Unidad
+    <select id="obtenerUnidadesPorEstatus" resultType="pojo.Unidad">
+        SELECT Unidad.*, Tipo.nombre 
+        FROM Unidad
         INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
-        WHERE estatus = #{estatus};
+        WHERE idEstatus = #{estatus};
     </select>
     
     <insert id="registrar" parameterType="pojo.Unidad">
