@@ -25,11 +25,11 @@ public class ImpEnvio {
         return envios;
     }
     
-    public static List<Envio> obtenerEnvioConductor() {
+    public static List<Envio> obtenerEnvioConductor(Integer idColaborador) {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
         List<Envio> envios = null;
         if(conexionBD != null) {
-            envios = conexionBD.selectList("envio. obtenerEnviosColaborador");
+            envios = conexionBD.selectList("envio.obtenerEnviosColaborador", idColaborador);
         }
         return envios;
     }

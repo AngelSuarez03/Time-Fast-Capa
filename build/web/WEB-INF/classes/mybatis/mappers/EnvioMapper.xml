@@ -5,8 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="envio">
     <select id="envios" resultType="pojo.Envio" >
-        SELECT numeroGuia, calle, colonia, numero, cp, ciudad, costo, destino, motivo
-        FROM Envio;
+        SELECT e.*, CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS colaborador, CONCAT(t.nombre, " ", t.apellidoPaterno, " ", t.apellidoMaterno) AS cliente, t.correo, t.telefono, s.Estatus as estatus
+        FROM Envio e
+        INNER JOIN Colaborador c ON e.idColaborador = c.id
+        INNER JOIN Cliente t ON e.idCliente = t.id
+        INNER JOIN Estatus s ON e.idEstatus = s.id;
     </select>
     
     <insert id="insertar" parameterType="pojo.Envio">
@@ -18,10 +21,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM Envio WHERE numeroGuia = #{numeroGuia};
     </select>
     
-    <select id="obtenerEnviosColaborador" resultType="pojo.Envio" parameterType="String">
-        SELECT numeroGuia, calle, colonia, numero, cp, ciudad, costo, destino, motivo
-        FROM Envio
-        WHERE numeroGuia = #{numeroGuia};
+    <select id="obtenerEnviosColaborador" resultType="pojo.Envio" parameterType="int">
+        SELECT e.*, CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS colaborador, CONCAT(t.nombre, " ", t.apellidoPaterno, " ", t.apellidoMaterno) AS cliente, t.correo, t.telefono, s.Estatus as estatus
+        FROM Envio e
+        INNER JOIN Colaborador c ON e.idColaborador = c.id
+        INNER JOIN Cliente t ON e.idCliente = t.id
+        INNER JOIN Estatus s ON e.idEstatus = s.id
+        WHERE c.id = #{idColaborador};  
     </select>
     
 </mapper>
