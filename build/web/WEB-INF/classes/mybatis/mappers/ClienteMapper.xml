@@ -36,6 +36,22 @@ and open the template in the editor.
         #{numero}
         );
     </insert>
+    
+    <update id="actualizarCliente" parameterType="pojo.Cliente">
+        UPDATE Cliente 
+        SET 
+        nombre = #{nombre}, 
+        apellidoPaterno = #{apellidoPaterno}, 
+        apellidoMaterno = #{apellidoMaterno}, 
+        correo = #{correo}, 
+        telefono = #{telefono}, 
+        calle = #{calle}, 
+        colonia = #{colonia}, 
+        cp = #{cp}, 
+        numero = #{numero}
+        WHERE 
+        id = #{id};
+    </update>
 
     
 
