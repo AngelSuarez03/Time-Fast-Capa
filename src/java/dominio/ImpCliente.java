@@ -10,6 +10,7 @@ import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojo.Cliente;
 import pojo.Colaborador;
+import pojo.Mensaje;
 
 /**
  *
@@ -26,4 +27,28 @@ public class ImpCliente {
         return clientes;
     }
     
+     public static Mensaje registrarCliente(Cliente cliente) {
+        Mensaje respuesta = new Mensaje();
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        if (conexionBD != null) {
+            try {
+                int resultado = conexionBD.insert("cliente.insertarCliente", cliente);
+                conexionBD.commit();
+                if (resultado > 0) {
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Cliente registrado con éxito.");
+                } else {
+                    respuesta.setError(true);
+                    respuesta.setMensaje("No se pudo registrar al cliente, inténtelo más tarde.");
+                }
+            } catch (Exception e) {
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }
+        } else {
+            respuesta.setError(true);
+            respuesta.setMensaje("Por el momento el servicio no está disponible.");
+        }
+        return respuesta;
+    }
 }

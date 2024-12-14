@@ -11,5 +11,32 @@ and open the template in the editor.
     <select id="obtenerClientes" resultType="pojo.Cliente">
         SELECT * FROM Cliente;
     </select>
+    
+    <insert id="insertarCliente" parameterType="pojo.Cliente">
+        INSERT INTO Cliente (
+        nombre, 
+        apellidoPaterno, 
+        apellidoMaterno, 
+        correo, 
+        telefono, 
+        calle, 
+        colonia, 
+        cp, 
+        numero
+        ) 
+        VALUES (
+        #{nombre}, 
+        #{apellidoPaterno}, 
+        #{apellidoMaterno}, 
+        #{correo}, 
+        #{telefono}, 
+        #{calle}, 
+        #{colonia}, 
+        #{cp}, 
+        #{numero}
+        );
+    </insert>
+
+    
 
 </mapper>
