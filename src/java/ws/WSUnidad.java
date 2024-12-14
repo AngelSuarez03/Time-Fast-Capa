@@ -6,8 +6,10 @@
 package ws;
 
 import com.google.gson.Gson;
+import dominio.ImpColaborador;
 import dominio.ImpUnidad;
 import java.util.List;
+import java.util.Map;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,64 +31,81 @@ import pojo.Unidad;
  */
 @Path("unidad")
 public class WSUnidad {
-    
+
     @Context
     private UriInfo context;
-    
+
     public WSUnidad() {
-        
+
     }
-    
+
     @Path("obtenerUnidades")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Unidad> obtenerUnidades() {
         return ImpUnidad.obtenerUnidades();
     }
-    
-    @Path("obtenerUnidadesEstatus/{estatus}")
+
+    @Path("obtenerUnidadesEstatus")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Unidad> obtenerUnidadesPorEstatus(@PathParam("estatus") String estatus) {
-        return ImpUnidad.obtenerUnidadesPorEstatus(estatus);
+    public List<Unidad> obtenerUnidadesPorEstatus() {
+        return ImpUnidad.obtenerUnidadesPorEstatus();
     }
-    
+
     @Path("registrar")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Mensaje registrarUnidad (String jsonUnidad) {
+    public Mensaje registrarUnidad(String jsonUnidad) {
         try {
-        Gson gson = new Gson();
-        Unidad unidad = gson.fromJson(jsonUnidad, Unidad.class);
-        return ImpUnidad.registrarUnidad(unidad);
+            Gson gson = new Gson();
+            Unidad unidad = gson.fromJson(jsonUnidad, Unidad.class);
+            return ImpUnidad.registrarUnidad(unidad);
         } catch (Exception e) {
             throw new BadRequestException();
         }
-    } 
-    
+    }
+
     @Path("editar")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Mensaje editarUnidad (String jsonUnidad) {
+    public Mensaje editarUnidad(String jsonUnidad) {
         try {
-        Gson gson = new Gson();
-        Unidad unidad = gson.fromJson(jsonUnidad, Unidad.class);
-        return ImpUnidad.editarUnidad(unidad);
+            Gson gson = new Gson();
+            Unidad unidad = gson.fromJson(jsonUnidad, Unidad.class);
+            return ImpUnidad.editarUnidad(unidad);
         } catch (Exception e) {
             throw new BadRequestException();
         }
-    } 
-    
+    }
+
     @Path("eliminar/{vin}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarUnidad (@PathParam ("vin") String vin) {
-        if(vin != null && !vin.isEmpty())
+    public Mensaje eliminarUnidad(@PathParam("vin") String vin) {
+        if (vin != null && !vin.isEmpty()) {
             return ImpUnidad.eliminarUnidad(vin);
+        }
         throw new BadRequestException();
-    } 
-    
-    
+    }
+
+    @Path("editarEstadoUnidad")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Mensaje editarUnidadColaborador(String jsonParams) {
+        try {
+            Gson gson = new Gson();
+            Map<String, Object> params = gson.fromJson(jsonParams, Map.class);
+
+            Integer id = (params.get("id") instanceof Double) ? ((Double) params.get("id")).intValue() : (Integer) params.get("id");
+            String estado = params.get("estado") == null ? null
+                    : (params.get("estado") instanceof Double ? String.valueOf((Double) params.get("estado")) : (String) params.get("estado"));
+            return ImpUnidad.editarEstadoUnidad(id, estado);
+        } catch (Exception e) {
+            throw new BadRequestException("Datos de entrada inválidos.");
+        }
+    }
 }

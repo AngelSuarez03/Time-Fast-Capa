@@ -8,6 +8,7 @@ package dominio;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojo.Mensaje;
@@ -29,11 +30,11 @@ public class ImpUnidad {
     }
     
     //Obtener todas las unidades dependiendo del estatus que reciba
-    public static List<Unidad> obtenerUnidadesPorEstatus(String estatus) {
+    public static List<Unidad> obtenerUnidadesPorEstatus() {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
         List<Unidad> unidades = null;
         if(conexionBD != null)
-            unidades = conexionBD.selectList("unidad.obtenerUnidadesPorEstatus",estatus);
+            unidades = conexionBD.selectList("unidad.obtenerUnidadesPorEstatus");
         return unidades;
     }
     
@@ -120,5 +121,39 @@ public class ImpUnidad {
         }
         return respuesta;
     }
+    
+    public static Mensaje editarEstadoUnidad(int id, String estado) {
+        Mensaje respuesta = new Mensaje();
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+
+        if (conexionBD != null) {
+            try {
+                Map<String, Object> params = new HashMap<>();
+                params.put("id", id);
+                params.put("estado", estado); 
+
+                int editado = conexionBD.update("unidad.actualizarEstadoUnidad", params);
+                conexionBD.commit();
+
+                if (editado > 0) {
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Estado actualizado");
+                } else {
+                    respuesta.setError(true);
+                    respuesta.setMensaje("Hubo un error en la actualizacion");
+                }
+            } catch (Exception e) {
+                respuesta.setError(true);
+                respuesta.setMensaje("Error al editar la información: " + e.getMessage());
+            } finally {
+                conexionBD.close();
+            }
+        } else {
+            respuesta.setError(true);
+            respuesta.setMensaje("No se pudo establecer la conexión con la base de datos.");
+        }
+        return respuesta;
+    }
+    
     
 }

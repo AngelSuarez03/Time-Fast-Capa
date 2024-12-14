@@ -5,45 +5,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="unidad">
     <select id="obtenerUnidades" resultType="pojo.Unidad" >
-        SELECT 
+        SELECT  
         Unidad.*, 
         Tipo.nombre, 
-        CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador 
+        CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador,
+        c.id AS idColaborador
         FROM Unidad
         INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
-        INNER JOIN Colaborador c ON Unidad.id = c.idUnidad;
+        LEFT JOIN Colaborador c ON Unidad.id = c.idUnidad;
     </select>
     
     <select id="obtenerUnidadesPorEstatus" resultType="pojo.Unidad">
-        SELECT Unidad.*, Tipo.nombre 
-        FROM Unidad
-        INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
-        WHERE idEstatus = #{estatus};
+        SELECT u.*
+        FROM Unidad u
+        LEFT JOIN Colaborador c ON c.idUnidad = u.id
+        WHERE c.idUnidad IS NULL;
     </select>
     
     <insert id="registrar" parameterType="pojo.Unidad">
-        INSERT INTO Unidad (nii, vin, marca, modelo, anio, estatus, motivo, idTipo) 
-        VALUES (#{nii}, #{vin}, #{marca}, #{modelo}, #{anio}, #{estatus}, #{motivo}, #{idTipo});
+        INSERT INTO Unidad (nii, vin, marca, modelo, anio, estado, motivo, idTipo, nombreEliminacion) 
+        VALUES (#{nii}, #{vin}, #{marca}, #{modelo}, #{anio}, #{estado}, #{motivo}, #{idTipo}, #{nombreEliminacion});
     </insert>
 
     <update id="editar" parameterType="pojo.Unidad">
         UPDATE Unidad
         SET 
-        nii = #{nii}, 
-        vin = #{vin}, 
+        nii = #{nii},  
         marca = #{marca}, 
         modelo = #{modelo}, 
         anio = #{anio}, 
-        estatus = #{estatus}, 
+        estado = #{estado},
         motivo = #{motivo}, 
-        idTipo = #{idTipo}
+        idTipo = #{idTipo}, 
+        nombreEliminacion = #{nombreEliminacion}
         WHERE id = #{id};
-    </update>
-
+    </update> 
+   
     <delete id="eliminar" parameterType="String">
         DELETE FROM Unidad
         WHERE vin = #{vin};
     </delete>
+    
+    <update id="actualizarEstadoUnidad" parameterType="map">
+        UPDATE Unidad
+        SET estado = #{estado}
+        WHERE id = #{id};
+    </update>
+
 
     
 </mapper>
