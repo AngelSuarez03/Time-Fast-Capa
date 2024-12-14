@@ -92,6 +92,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         idRol = #{idRol}
         WHERE numeroPersonal = #{numeroPersonal};
     </update>
-
+    
+    <update id="quitarUnidad" parameterType="map">
+        UPDATE Colaborador
+        SET idUnidad = #{idUnidad}
+        WHERE id = #{id};
+    </update>
     
 </mapper>

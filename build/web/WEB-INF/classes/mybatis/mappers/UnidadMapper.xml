@@ -5,10 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="unidad">
     <select id="obtenerUnidades" resultType="pojo.Unidad" >
-        SELECT 
+        SELECT  
         Unidad.*, 
         Tipo.nombre, 
-        CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador 
+        CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS nombreColaborador,
+        c.id AS idColaborador
         FROM Unidad
         INNER JOIN Tipo ON Unidad.idTipo = Tipo.id
         LEFT JOIN Colaborador c ON Unidad.id = c.idUnidad;
@@ -39,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         nombreEliminacion = #{nombreEliminacion}
         WHERE id = #{id};
     </update> 
-
+   
     <delete id="eliminar" parameterType="String">
         DELETE FROM Unidad
         WHERE vin = #{vin};
