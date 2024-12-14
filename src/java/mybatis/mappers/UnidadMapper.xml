@@ -45,6 +45,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DELETE FROM Unidad
         WHERE vin = #{vin};
     </delete>
+    
+    <update id="actualizarEstadoUnidad" parameterType="map">
+        UPDATE Unidad
+        SET estado = #{estado}
+        WHERE id = #{id};
+    </update>
+
 
     
 </mapper>
