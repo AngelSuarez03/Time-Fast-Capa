@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application{
         resources.add(ws.WSEstado.class);
         resources.add(ws.WSEstatus.class);
         resources.add(ws.WSLogin.class);
+        resources.add(ws.WSPaquete.class);
         resources.add(ws.WSPosee.class);
         resources.add(ws.WSRol.class);
         resources.add(ws.WSTipo.class);

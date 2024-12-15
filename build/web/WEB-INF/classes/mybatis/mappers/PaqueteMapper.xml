@@ -6,7 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="paquete">
     
     <select id="obtenerPaquetes" resultType="pojo.Paquete">
-        
+        SELECT Paquete.*, e.numeroGuia 
+        FROM Paquete
+        INNER JOIN Envio e ON Paquete.idEnvio = e.id;
+    </select>
+    
+    <select id="obtenerPaquetesEnvio" resultType="pojo.Paquete">
+        SELECT Paquete.*, e.numeroGuia 
+        FROM Paquete
+        INNER JOIN Envio e ON Paquete.idEnvio = e.id
+        WHERE idEnvio = #{idEnvio};
     </select>
     
 </mapper>
