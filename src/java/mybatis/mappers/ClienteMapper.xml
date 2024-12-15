@@ -52,7 +52,10 @@ and open the template in the editor.
         WHERE 
         id = #{id};
     </update>
-
     
-
+    <delete id="eliminarCliente" parameterType="int">
+        DELETE FROM Cliente 
+        WHERE id = #{id};
+    </delete>
+    
 </mapper>
