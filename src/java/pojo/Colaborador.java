@@ -18,10 +18,6 @@ public class Colaborador {
     private String correo;
     private String curp;
     private String numeroPersonal;
-    private Integer numero;
-    private String colonia;
-    private String cp;
-    private String telefono;
     private String password;
     private String foto;
     private Integer idRol;
@@ -35,7 +31,7 @@ public class Colaborador {
         
     }
 
-    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, String foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol, String numLicencia) {
+    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, String password, String foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol, String numLicencia) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -43,10 +39,6 @@ public class Colaborador {
         this.correo = correo;
         this.curp = curp;
         this.numeroPersonal = numeroPersonal;
-        this.numero = numero;
-        this.colonia = colonia;
-        this.cp = cp;
-        this.telefono = telefono;
         this.password = password;
         this.foto = foto;
         this.idRol = idRol;
@@ -56,7 +48,7 @@ public class Colaborador {
         this.rol = rol;
         this.numLicencia = numLicencia;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -111,38 +103,6 @@ public class Colaborador {
 
     public void setNumeroPersonal(String numeroPersonal) {
         this.numeroPersonal = numeroPersonal;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
-    }
-
-    public String getCp() {
-        return cp;
-    }
-
-    public void setCp(String cp) {
-        this.cp = cp;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getPassword() {
@@ -209,4 +169,6 @@ public class Colaborador {
         this.numLicencia = numLicencia;
     }
     
+    
+
 }

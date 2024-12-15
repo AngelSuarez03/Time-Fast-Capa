@@ -61,6 +61,13 @@ public class WSColaborador {
     public List<Colaborador> obtenerNoAsigados() {
         return ImpColaborador.obtenerConductoresSinAsignar();
     }
+    
+    @Path("obtenerConductoresAsignados")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Colaborador> obtenerAsigados() {
+        return ImpColaborador.obtenerConductorAsignado();
+    }
 
     @Path("recuperarContrasenia/{correo}")
     @GET
