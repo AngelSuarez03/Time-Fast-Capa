@@ -35,7 +35,6 @@ public class ImpLogin {
                 }else {
                     respuesta.setError(true);
                     respuesta.setMensaje("No. de personal y / o  password incorrectos");
-                    
                 }
                 
             } catch (Exception e){  
