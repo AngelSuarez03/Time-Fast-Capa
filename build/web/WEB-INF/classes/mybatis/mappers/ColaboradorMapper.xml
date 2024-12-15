@@ -26,9 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="obtenerPorRol" parameterType="Int" resultType="pojo.Colaborador">
-        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, password, foto, idRol, Rol.nombre as rol
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, foto, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 
         FROM Colaborador
         INNER JOIN Rol ON Colaborador.idRol = Rol.id
+        INNER JOIN Unidad ON Colaborador.idUnidad = Unidad.id
         WHERE Colaborador.idRol = #{idRol};
     </select>
     
@@ -39,10 +40,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="noAsignados" resultType="pojo.Colaborador">
-        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, numero, colonia, cp, telefono, foto, idUnidad, idRol, Rol.nombre as rol
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, foto, idUnidad, idRol, Rol.nombre as rol
         FROM Colaborador
         INNER JOIN Rol ON Colaborador.idRol = Rol.id
         WHERE idUnidad IS NULL;        
+    </select>
+    
+    <select id="asignados" resultType="pojo.Colaborador">
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, foto, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 
+        FROM Colaborador
+        INNER JOIN Rol ON Colaborador.idRol = Rol.id
+        INNER JOIN Unidad ON Colaborador.idUnidad = Unidad.id
+        WHERE idUnidad IS NOT NULL AND Colaborador.idRol = 3;
     </select>
     
     <delete id="eliminar">
@@ -95,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <update id="quitarUnidad" parameterType="map">
         UPDATE Colaborador
-        SET idUnidad = #{idUnidad}
+        SET idUnidad = NULL
         WHERE id = #{id};
     </update>
     

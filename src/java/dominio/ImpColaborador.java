@@ -40,7 +40,7 @@ public class ImpColaborador {
         return password;
     }
 
-    //Obtiene un lista de colaborador por el rol asignado
+    //Obtiene una lista de colaborador por el rol asignado
     public static List<Colaborador> obtenerColaboradoresPorRol(Integer idRol) {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
         List<Colaborador> colaboradores = null;
@@ -50,7 +50,7 @@ public class ImpColaborador {
         return colaboradores;
     }
 
-    //Obtiene un lista de colaborador sin unidad asignada
+    //Obtiene una lista de colaborador sin unidad asignada
     public static List<Colaborador> obtenerConductoresSinAsignar() {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
         List<Colaborador> colaboradores = null;
@@ -59,6 +59,16 @@ public class ImpColaborador {
         }
         return colaboradores;
     }
+    
+    //Obtiene una lista de conductores con unidad asignada
+    public static List<Colaborador> obtenerConductorAsignado() {
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        List<Colaborador> colaboradores = null;
+        if (conexionBD != null) {
+            colaboradores = conexionBD.selectList("colaborador.asignados");
+        }
+        return colaboradores;
+    }    
 
     //Registra un colaborador
     public static Mensaje registrarColaborador(Colaborador colaborador) {
