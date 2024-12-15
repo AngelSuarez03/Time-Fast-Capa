@@ -15,12 +15,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="insertar" parameterType="pojo.Envio">
-        INSERT (numeroGuia, calle, colonia, numero, cp, ciudad, costo, destino, motivo) 
-        INTO Envio VALUES (#{numeroGuia}, #{calle}, #{colonia}, #{numero}, #{cp}, #{ciudad}, #{costo}, #{destino}, #{motivo});
+        INSERT INTO Envio (
+        numeroGuia, 
+        calleOrigen, 
+        coloniaOrigen, 
+        numeroOrigen, 
+        cpOrigen, 
+        ciudadOrigen, 
+        idEstadoOrigen, 
+        calleDestino, 
+        coloniaDestino, 
+        numeroDestino, 
+        cpDestino, 
+        ciudadDestino, 
+        idEstadoDestino, 
+        costo, 
+        idColaborador, 
+        idCliente, 
+        idEstatus
+        )
+        VALUES (
+        #{numeroGuia},
+        #{calleOrigen},
+        #{coloniaOrigen},
+        #{numeroOrigen},
+        #{cpOrigen},
+        #{ciudadOrigen},
+        #{idEstadoOrigen},
+        #{calleDestino},
+        #{coloniaDestino},
+        #{numeroDestino},
+        #{cpDestino},
+        #{ciudadDestino},
+        #{idEstadoDestino},
+        #{costo},
+        #{idColaborador},
+        #{idCliente},
+        #{idEstatus}
+        )
     </insert>
     
     <select id="obtenerPorNoGuia" resultType="pojo.Envio">
-        SELECT * FROM Envio WHERE numeroGuia = #{numeroGuia};
+        SELECT e.*, o.nombre as estadoOrigen, d.nombre as estadoDestino, CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS colaborador, CONCAT(t.nombre, " ", t.apellidoPaterno, " ", t.apellidoMaterno) AS cliente, t.correo, t.telefono, s.Estatus as estatus
+        FROM Envio e
+        INNER JOIN Colaborador c ON e.idColaborador = c.id
+        INNER JOIN Cliente t ON e.idCliente = t.id
+        INNER JOIN Estatus s ON e.idEstatus = s.id
+        INNER JOIN Estado o ON e.idEstadoOrigen = o.id
+        INNER JOIN Estado d ON e.idEstadoDestino = d.id
+        WHERE numeroGuia = #{numeroGuia};
     </select>
     
     <select id="obtenerEnviosColaborador" resultType="pojo.Envio" parameterType="int">
@@ -34,8 +77,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE c.id = #{idColaborador};  
     </select>
     
+    <select id="obtenerPorEstatus" resultType="pojo.Envio">
+        SELECT e.*, o.nombre as estadoOrigen, d.nombre as estadoDestino, CONCAT(c.nombre, " ", c.apellidoPaterno, " ", c.apellidoMaterno) AS colaborador, CONCAT(t.nombre, " ", t.apellidoPaterno, " ", t.apellidoMaterno) AS cliente, t.correo, t.telefono, s.Estatus as estatus
+        FROM Envio e
+        INNER JOIN Colaborador c ON e.idColaborador = c.id
+        INNER JOIN Cliente t ON e.idCliente = t.id
+        INNER JOIN Estatus s ON e.idEstatus = s.id
+        INNER JOIN Estado o ON e.idEstadoOrigen = o.id
+        INNER JOIN Estado d ON e.idEstadoDestino = d.id
+        WHERE e.idEstatus = #{idEstatus}; 
+    </select>
+    
     <update id="actualizarEstatus" >
         UPDATE Envio SET idEstatus = #{idEstatus} WHERE id = #{id};    
+    </update>
+    
+    <update id="actualizarEnvio" parameterType="pojo.Envio">
+        UPDATE Envio
+        SET
+        calleOrigen = #{calleOrigen},
+        coloniaOrigen = #{coloniaOrigen},
+        numeroOrigen = #{numeroOrigen},
+        cpOrigen = #{cpOrigen},
+        ciudadOrigen = #{ciudadOrigen},
+        idEstadoOrigen = #{idEstadoOrigen},
+        calleDestino = #{calleDestino},
+        coloniaDestino = #{coloniaDestino},
+        numeroDestino = #{numeroDestino},
+        cpDestino = #{cpDestino},
+        ciudadDestino = #{ciudadDestino},
+        idEstadoDestino = #{idEstadoDestino},
+        costo = #{costo},
+        idColaborador = #{idColaborador},
+        idCliente = #{idCliente},
+        idEstatus = #{idEstatus}
+        WHERE id = #{id};
     </update>
     
 </mapper>

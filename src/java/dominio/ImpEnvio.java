@@ -36,6 +36,15 @@ public class ImpEnvio {
         }
         return envios;
     }
+    
+    public static List<Envio> obtenerPorEstatus(Integer idEstatus) {
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        List<Envio> envios = null;
+        if (conexionBD != null) {
+            envios = conexionBD.selectList("envio.obtenerPorEstatus", idEstatus);
+        }
+        return envios;
+    }
 
     public static Mensaje actualizarEstatus(Integer idEstatus, Integer id) {
         SqlSession conexionBD = MyBatisUtil.obtenerConexion();
@@ -52,6 +61,56 @@ public class ImpEnvio {
                     respuesta.setError(false);
                 } else {
                     respuesta.setMensaje("El estatus no es válido | El envio no existe");
+                    respuesta.setError(true);
+                }
+            } catch (Exception e) {
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }
+        } else {
+            respuesta.setError(true);
+            respuesta.setMensaje("Por el momento no se puede actualizar la información.");
+        }
+        return respuesta;
+    }
+    
+    public static Mensaje crearEnvio(Envio envio){
+        Mensaje respuesta = new Mensaje();
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        if(conexionBD != null){
+            try {
+                int resultado = conexionBD.insert("envio.insertar", envio);
+                conexionBD.commit();
+                if(resultado > 0){
+                    respuesta.setMensaje("Envío creado, gracias por su preferencia");
+                    respuesta.setError(false);
+                } else {
+                    respuesta.setMensaje("El envío ya existe, por favor verifique los datos");
+                    respuesta.setError(true);
+                }
+            } catch (Exception e) {
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }
+        } else {
+            respuesta.setError(true);
+            respuesta.setMensaje("Por el momento no se puede actualizar la información.");
+        }
+        return respuesta;
+    }
+    
+    public static Mensaje modificarEnvio(Envio envio){
+        Mensaje respuesta = new Mensaje();
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        if(conexionBD != null){
+            try {
+                int resultado = conexionBD.update("envio.actualizarEnvio", envio);
+                conexionBD.commit();
+                if(resultado > 0){
+                    respuesta.setMensaje("Envío actualizado, gracias por su preferencia");
+                    respuesta.setError(false);
+                } else {
+                    respuesta.setMensaje("El envío no existe, por favor verifique los datos");
                     respuesta.setError(true);
                 }
             } catch (Exception e) {
