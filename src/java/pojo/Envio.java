@@ -13,14 +13,21 @@ public class Envio {
     
     private Integer id;
     private String numeroGuia;
-    private String calle;
-    private String colonia;
-    private Integer numero;
-    private String cp;
-    private String ciudad;
+    private String calleOrigen;
+    private String coloniaOrigen;
+    private Integer numeroOrigen;
+    private String cpOrigen;
+    private String ciudadOrigen;
+    private String idEstadoOrigen;
+    private String estadoOrigen;
+    private String calleDestino;
+    private String coloniaDestino;
+    private Integer numeroDestino;
+    private String cpDestino;
+    private String ciudadDestino;
+    private String idEstadoDestino;
+    private String estadoDestino;
     private Float costo;
-    private String destino;
-    private String motivo;
     private Integer idColaborador;
     private String colaborador;
     private Integer idCliente;
@@ -34,17 +41,24 @@ public class Envio {
     
     }
 
-    public Envio(Integer id, String numeroGuia, String calle, String colonia, Integer numero, String cp, String ciudad, Float costo, String destino, String motivo, Integer idColaborador, String colaborador, Integer idCliente, String cliente, String correo, String telefono, Integer idEstatus, String estatus) {
+    public Envio(Integer id, String numeroGuia, String calleOrigen, String coloniaOrigen, Integer numeroOrigen, String cpOrigen, String ciudadOrigen, String idEstadoOrigen, String estadoOrigen, String calleDestino, String coloniaDestino, Integer numeroDestino, String cpDestino, String ciudadDestino, String idEstadoDestino, String estadoDestino, Float costo, Integer idColaborador, String colaborador, Integer idCliente, String cliente, String correo, String telefono, Integer idEstatus, String estatus) {
         this.id = id;
         this.numeroGuia = numeroGuia;
-        this.calle = calle;
-        this.colonia = colonia;
-        this.numero = numero;
-        this.cp = cp;
-        this.ciudad = ciudad;
+        this.calleOrigen = calleOrigen;
+        this.coloniaOrigen = coloniaOrigen;
+        this.numeroOrigen = numeroOrigen;
+        this.cpOrigen = cpOrigen;
+        this.ciudadOrigen = ciudadOrigen;
+        this.idEstadoOrigen = idEstadoOrigen;
+        this.estadoOrigen = estadoOrigen;
+        this.calleDestino = calleDestino;
+        this.coloniaDestino = coloniaDestino;
+        this.numeroDestino = numeroDestino;
+        this.cpDestino = cpDestino;
+        this.ciudadDestino = ciudadDestino;
+        this.idEstadoDestino = idEstadoDestino;
+        this.estadoDestino = estadoDestino;
         this.costo = costo;
-        this.destino = destino;
-        this.motivo = motivo;
         this.idColaborador = idColaborador;
         this.colaborador = colaborador;
         this.idCliente = idCliente;
@@ -71,44 +85,116 @@ public class Envio {
         this.numeroGuia = numeroGuia;
     }
 
-    public String getCalle() {
-        return calle;
+    public String getCalleOrigen() {
+        return calleOrigen;
     }
 
-    public void setCalle(String calle) {
-        this.calle = calle;
+    public void setCalleOrigen(String calleOrigen) {
+        this.calleOrigen = calleOrigen;
     }
 
-    public String getColonia() {
-        return colonia;
+    public String getColoniaOrigen() {
+        return coloniaOrigen;
     }
 
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
+    public void setColoniaOrigen(String coloniaOrigen) {
+        this.coloniaOrigen = coloniaOrigen;
     }
 
-    public Integer getNumero() {
-        return numero;
+    public Integer getNumeroOrigen() {
+        return numeroOrigen;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
+    public void setNumeroOrigen(Integer numeroOrigen) {
+        this.numeroOrigen = numeroOrigen;
     }
 
-    public String getCp() {
-        return cp;
+    public String getCpOrigen() {
+        return cpOrigen;
     }
 
-    public void setCp(String cp) {
-        this.cp = cp;
+    public void setCpOrigen(String cpOrigen) {
+        this.cpOrigen = cpOrigen;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getCiudadOrigen() {
+        return ciudadOrigen;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setCiudadOrigen(String ciudadOrigen) {
+        this.ciudadOrigen = ciudadOrigen;
+    }
+
+    public String getIdEstadoOrigen() {
+        return idEstadoOrigen;
+    }
+
+    public void setIdEstadoOrigen(String idEstadoOrigen) {
+        this.idEstadoOrigen = idEstadoOrigen;
+    }
+
+    public String getEstadoOrigen() {
+        return estadoOrigen;
+    }
+
+    public void setEstadoOrigen(String estadoOrigen) {
+        this.estadoOrigen = estadoOrigen;
+    }
+
+    public String getCalleDestino() {
+        return calleDestino;
+    }
+
+    public void setCalleDestino(String calleDestino) {
+        this.calleDestino = calleDestino;
+    }
+
+    public String getColoniaDestino() {
+        return coloniaDestino;
+    }
+
+    public void setColoniaDestino(String coloniaDestino) {
+        this.coloniaDestino = coloniaDestino;
+    }
+
+    public Integer getNumeroDestino() {
+        return numeroDestino;
+    }
+
+    public void setNumeroDestino(Integer numeroDestino) {
+        this.numeroDestino = numeroDestino;
+    }
+
+    public String getCpDestino() {
+        return cpDestino;
+    }
+
+    public void setCpDestino(String cpDestino) {
+        this.cpDestino = cpDestino;
+    }
+
+    public String getCiudadDestino() {
+        return ciudadDestino;
+    }
+
+    public void setCiudadDestino(String ciudadDestino) {
+        this.ciudadDestino = ciudadDestino;
+    }
+
+    public String getIdEstadoDestino() {
+        return idEstadoDestino;
+    }
+
+    public void setIdEstadoDestino(String idEstadoDestino) {
+        this.idEstadoDestino = idEstadoDestino;
+    }
+
+    public String getEstadoDestino() {
+        return estadoDestino;
+    }
+
+    public void setEstadoDestino(String estadoDestino) {
+        this.estadoDestino = estadoDestino;
     }
 
     public Float getCosto() {
@@ -117,22 +203,6 @@ public class Envio {
 
     public void setCosto(Float costo) {
         this.costo = costo;
-    }
-
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
-    public String getMotivo() {
-        return motivo;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
     }
 
     public Integer getIdColaborador() {
@@ -198,7 +268,5 @@ public class Envio {
     public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
-
-    
 
 }
