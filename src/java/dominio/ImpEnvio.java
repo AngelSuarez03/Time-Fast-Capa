@@ -12,6 +12,7 @@ import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojo.Envio;
 import pojo.Mensaje;
+import pojo.OperacionEnvio;
 
 /**
  *
@@ -124,4 +125,33 @@ public class ImpEnvio {
         return respuesta;
     }
 
+    public static OperacionEnvio obtenerEnvioNoGuia(String numeroGuia){
+        
+        OperacionEnvio respuesta = new OperacionEnvio();
+        
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        if(conexionBD != null){
+            try{
+                HashMap<String,String> parametros = new LinkedHashMap<>();
+                parametros.put("numeroGuia",numeroGuia);
+                System.out.println(parametros);
+                Envio envio = conexionBD.selectOne("envio.obtenerPorNoGuia",parametros);
+                if(envio != null){
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Datos del envio: " +envio.getNumeroGuia());
+                    respuesta.setEnvio(envio);
+                }else{
+                    respuesta.setError(true);
+                    respuesta.setMensaje("Numero de guia incorrecto");
+                }
+            }catch(Exception e){
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }
+        }else{
+            respuesta.setError(true);
+            respuesta.setMensaje("Por el momento no se puede consultar la informaciÃ³n.");
+        }
+        return respuesta;
+    }
 }
