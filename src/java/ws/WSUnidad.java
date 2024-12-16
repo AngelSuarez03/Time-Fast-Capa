@@ -6,7 +6,6 @@
 package ws;
 
 import com.google.gson.Gson;
-import dominio.ImpColaborador;
 import dominio.ImpUnidad;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +45,20 @@ public class WSUnidad {
         return ImpUnidad.obtenerUnidades();
     }
 
-    @Path("obtenerUnidadesEstatus")
+    @Path("obtenerUnidadesEstatus/{estado}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Unidad> obtenerUnidadesPorEstatus() {
-        return ImpUnidad.obtenerUnidadesPorEstatus();
+    public List<Unidad> obtenerUnidadesPorEstatus(@PathParam ("estado") String estado) {
+        if( estado != null)
+            return ImpUnidad.obtenerUnidadesPorEstatus(estado);
+        throw new BadRequestException();
+    }
+    
+    @Path("obtenerUnidadesDisponibles")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Unidad> obtenerUnidadesDisponibles() {
+        return ImpUnidad.obtenerUnidadesDisponibles();
     }
 
     @Path("registrar")

@@ -16,6 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="obtenerUnidadesPorEstatus" resultType="pojo.Unidad">
+        SELECT  u.*
+        FROM Unidad u 
+        WHERE estado = #{estado};
+    </select>
+    
+    <select id="obtenerUnidadesDisponibles" resultType="pojo.Unidad">
         SELECT u.*
         FROM Unidad u
         LEFT JOIN Colaborador c ON c.idUnidad = u.id
