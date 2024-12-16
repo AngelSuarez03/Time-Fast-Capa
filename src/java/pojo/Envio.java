@@ -18,14 +18,14 @@ public class Envio {
     private Integer numeroOrigen;
     private String cpOrigen;
     private String ciudadOrigen;
-    private String idEstadoOrigen;
+    private Integer idEstadoOrigen;
     private String estadoOrigen;
     private String calleDestino;
     private String coloniaDestino;
     private Integer numeroDestino;
     private String cpDestino;
     private String ciudadDestino;
-    private String idEstadoDestino;
+    private Integer idEstadoDestino;
     private String estadoDestino;
     private Float costo;
     private Integer idColaborador;
@@ -41,7 +41,7 @@ public class Envio {
     
     }
 
-    public Envio(Integer id, String numeroGuia, String calleOrigen, String coloniaOrigen, Integer numeroOrigen, String cpOrigen, String ciudadOrigen, String idEstadoOrigen, String estadoOrigen, String calleDestino, String coloniaDestino, Integer numeroDestino, String cpDestino, String ciudadDestino, String idEstadoDestino, String estadoDestino, Float costo, Integer idColaborador, String colaborador, Integer idCliente, String cliente, String correo, String telefono, Integer idEstatus, String estatus) {
+    public Envio(Integer id, String numeroGuia, String calleOrigen, String coloniaOrigen, Integer numeroOrigen, String cpOrigen, String ciudadOrigen, Integer idEstadoOrigen, String estadoOrigen, String calleDestino, String coloniaDestino, Integer numeroDestino, String cpDestino, String ciudadDestino, Integer idEstadoDestino, String estadoDestino, Float costo, Integer idColaborador, String colaborador, Integer idCliente, String cliente, String correo, String telefono, Integer idEstatus, String estatus) {
         this.id = id;
         this.numeroGuia = numeroGuia;
         this.calleOrigen = calleOrigen;
@@ -68,6 +68,8 @@ public class Envio {
         this.idEstatus = idEstatus;
         this.estatus = estatus;
     }
+
+    
 
     public Integer getId() {
         return id;
@@ -125,14 +127,22 @@ public class Envio {
         this.ciudadOrigen = ciudadOrigen;
     }
 
-    public String getIdEstadoOrigen() {
+    public Integer getIdEstadoOrigen() {
         return idEstadoOrigen;
     }
 
-    public void setIdEstadoOrigen(String idEstadoOrigen) {
+    public void setIdEstadoOrigen(Integer idEstadoOrigen) {
         this.idEstadoOrigen = idEstadoOrigen;
     }
 
+    public Integer getIdEstadoDestino() {
+        return idEstadoDestino;
+    }
+
+    public void setIdEstadoDestino(Integer idEstadoDestino) {
+        this.idEstadoDestino = idEstadoDestino;
+    }
+    
     public String getEstadoOrigen() {
         return estadoOrigen;
     }
@@ -179,14 +189,6 @@ public class Envio {
 
     public void setCiudadDestino(String ciudadDestino) {
         this.ciudadDestino = ciudadDestino;
-    }
-
-    public String getIdEstadoDestino() {
-        return idEstadoDestino;
-    }
-
-    public void setIdEstadoDestino(String idEstadoDestino) {
-        this.idEstadoDestino = idEstadoDestino;
     }
 
     public String getEstadoDestino() {
