@@ -23,6 +23,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import pojo.Envio;
 import pojo.Mensaje;
+import pojo.OperacionEnvio;
 
 /**
  *
@@ -99,6 +100,17 @@ public class WSEnvio {
         } catch (Exception e) {
             throw new BadRequestException();
         }
+    }
+    
+    @Path("obtenerEnvioNoGuia/{numeroGuia}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON) 
+    public OperacionEnvio obtenerClienteCorreo(@PathParam("numeroGuia") String numeroGuia){
+        // TODO Validaciones
+        if((numeroGuia !=null && !numeroGuia.isEmpty())){
+        return ImpEnvio.obtenerEnvioNoGuia(numeroGuia);
+        }
+        throw new BadRequestException();
     }
     
 }
