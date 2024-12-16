@@ -95,7 +95,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         curp = #{curp}, 
         numeroPersonal = #{numeroPersonal}, 
         password = #{password}, 
-        foto = #{foto}, 
         numLicencia = #{numLicencia}, 
         idUnidad = #{idUnidad}, 
         idRol = #{idRol}

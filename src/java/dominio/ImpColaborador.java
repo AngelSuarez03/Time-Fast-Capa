@@ -106,7 +106,7 @@ public class ImpColaborador {
                 conexionBD.commit();
                 if (editado > 0) {
                     respuesta.setError(false);
-                    respuesta.setMensaje("Información del colaborador: " + colaborador.getNombre() + " a sido editada.");
+                    respuesta.setMensaje("Informacion del colaborador: " + colaborador.getNombre() + " a sido editada.");
                 } else {
                     respuesta.setError(true);
                     respuesta.setMensaje("El numero de personal ingresado no existe");
