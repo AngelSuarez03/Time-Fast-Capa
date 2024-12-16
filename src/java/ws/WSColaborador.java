@@ -135,5 +135,26 @@ public class WSColaborador {
             throw new BadRequestException("Datos de entrada inválidos.");
         }
     }
+    
+    @Path("subirFoto/{idColaborador}")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Mensaje subirFoto(@PathParam("idColaborador")Integer idColaborador,
+            byte[] foto){
+        if(idColaborador != null && idColaborador > 0 && foto != null){
+            return ImpColaborador.registrarFoto(idColaborador, foto);
+        }
+        throw new BadRequestException();
+    }
+    
+    @Path("obtenerFoto/{idColaborador}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Colaborador obtenerFoto(@PathParam("idColaborador") Integer idColaborador){
+        if(idColaborador != null && idColaborador > 0){
+            return ImpColaborador.obtenerFoto(idColaborador);
+        }
+        throw new BadRequestException();
+    }
 
 }
