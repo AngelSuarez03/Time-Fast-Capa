@@ -14,7 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         Colaborador.curp, 
         Colaborador.numeroPersonal, 
         Colaborador.password, 
-        Colaborador.foto, 
         Colaborador.idRol, 
         Colaborador.idUnidad,
         Colaborador.numLicencia, 
@@ -26,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="obtenerPorRol" parameterType="Int" resultType="pojo.Colaborador">
-        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, foto, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 
         FROM Colaborador
         INNER JOIN Rol ON Colaborador.idRol = Rol.id
         INNER JOIN Unidad ON Colaborador.idUnidad = Unidad.id
@@ -40,14 +39,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="noAsignados" resultType="pojo.Colaborador">
-        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, foto, idUnidad, idRol, Rol.nombre as rol
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, idUnidad, idRol, Rol.nombre as rol
         FROM Colaborador
         INNER JOIN Rol ON Colaborador.idRol = Rol.id
         WHERE idUnidad IS NULL;        
     </select>
     
     <select id="asignados" resultType="pojo.Colaborador">
-        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, foto, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 
+        SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 
         FROM Colaborador
         INNER JOIN Rol ON Colaborador.idRol = Rol.id
         INNER JOIN Unidad ON Colaborador.idUnidad = Unidad.id
