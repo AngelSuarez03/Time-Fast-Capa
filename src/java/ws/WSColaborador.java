@@ -156,5 +156,15 @@ public class WSColaborador {
         }
         throw new BadRequestException();
     }
+    
+    @Path("correoExistente/{correo}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Mensaje correoExistente(@PathParam("correo") String Correo) {
+        if(Correo != null && !Correo.isEmpty()) {
+            return ImpColaborador.correoExistente(Correo);
+        }
+        throw new BadRequestException();
+    }
 
 }

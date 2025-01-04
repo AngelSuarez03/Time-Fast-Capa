@@ -30,7 +30,7 @@ public class ImpLogin {
                 Colaborador colaborador = conexionBD.selectOne("login.colaborador", parametros);
                 if(colaborador != null){
                     respuesta.setError(false);
-                    respuesta.setMensaje("Credencuiales correctas del colaborador " + colaborador.getNombre());
+                    respuesta.setMensaje("Credenciales correctas del colaborador " + colaborador.getNombre());
                     respuesta.setColaborador(colaborador);
                 }else {
                     respuesta.setError(true);

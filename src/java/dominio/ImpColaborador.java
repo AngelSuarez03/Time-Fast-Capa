@@ -106,7 +106,7 @@ public class ImpColaborador {
                 conexionBD.commit();
                 if (editado > 0) {
                     respuesta.setError(false);
-                    respuesta.setMensaje("Informacion del colaborador: " + colaborador.getNombre() + " a sido editada.");
+                    respuesta.setMensaje("Informacion del colaborador " + colaborador.getNombre() + " a sido editada.");
                 } else {
                     respuesta.setError(true);
                     respuesta.setMensaje("El numero de personal ingresado no existe");
@@ -225,6 +225,32 @@ public class ImpColaborador {
             }
         }
         return colaborador;
+    }
+    
+    public static Mensaje correoExistente(String Correo) {
+        Mensaje respuesta = new Mensaje();
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        if (conexionBD != null) {
+            try {
+                String correo = conexionBD.selectOne("colaborador.correoExistente", Correo);
+                if (correo != null && !correo.isEmpty() && correo != "") {
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Colaborador existente");
+                } else {
+                    respuesta.setError(true);
+                    respuesta.setMensaje("El correo ingresado es inexistente.");
+
+                }
+
+            } catch (Exception e) {
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }
+        } else {
+            respuesta.setError(true);
+            respuesta.setMensaje("Por el momento no se puede eliminar la información.");
+        }
+        return respuesta;
     }
 
 }
