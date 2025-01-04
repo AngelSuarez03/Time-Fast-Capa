@@ -41,8 +41,15 @@ public class WSColaborador {
     @Path("obtenerColaboradores")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Colaborador> obtenerColaborador() {
+    public List<Colaborador> obtenerColaboradores() {
         return ImpColaborador.obtenerColaboradores();
+    }
+    
+    @Path("obtenerColaborador/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Colaborador obtenerColaborador(@PathParam ("id") Integer id) {
+        return ImpColaborador.obtenerColaborador(id);
     }
 
     @Path("obtenerColaboradoresRol/{idRol}")

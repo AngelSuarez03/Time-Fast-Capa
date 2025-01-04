@@ -23,6 +23,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         INNER JOIN 
         Rol ON Colaborador.idRol = Rol.id;
     </select>
+    
+    <select id="obtenerColaborador" resultType="pojo.Colaborador">
+        SELECT 
+        c.id,
+        c.nombre, 
+        c.apellidoPaterno, 
+        c.apellidoMaterno, 
+        c.correo, 
+        c.curp, 
+        c.numeroPersonal, 
+        c.password,
+        c.idRol, 
+        c.idUnidad,
+        c.numLicencia, 
+        Rol.nombre AS rol
+        FROM 
+        Colaborador c
+        INNER JOIN 
+        Rol ON c.idRol = Rol.id
+        WHERE 
+        c.id = #{id};
+    </select>
 
     <select id="obtenerPorRol" parameterType="Int" resultType="pojo.Colaborador">
         SELECT Colaborador.id, Colaborador.nombre, apellidoPaterno, apellidoMaterno, correo, curp, numeroPersonal, password, idRol, Rol.nombre as rol, idUnidad, Unidad.vin 

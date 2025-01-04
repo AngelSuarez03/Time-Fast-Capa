@@ -29,6 +29,16 @@ public class ImpColaborador {
         }
         return colaboradores;
     }
+    
+    //Devuelve solamente el colaborador con el id
+    public static Colaborador obtenerColaborador(Integer id) {
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        Colaborador colaborador = null;
+        if (conexionBD != null) {
+            colaborador = conexionBD.selectOne("colaborador.obtenerColaborador", id);
+        }
+        return colaborador;
+    }
 
     //Devulve la contraseña del correo ingresado
     public static String recuperarPassword(String correo) {
