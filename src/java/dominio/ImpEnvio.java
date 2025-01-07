@@ -95,7 +95,7 @@ public class ImpEnvio {
             }
         } else {
             respuesta.setError(true);
-            respuesta.setMensaje("Por el momento no se puede actualizar la información.");
+            respuesta.setMensaje("Por el momento no se puede actualizar la informacion.");
         }
         return respuesta;
     }
@@ -120,7 +120,7 @@ public class ImpEnvio {
             }
         } else {
             respuesta.setError(true);
-            respuesta.setMensaje("Por el momento no se puede actualizar la información.");
+            respuesta.setMensaje("Por el momento no se puede actualizar la informacion.");
         }
         return respuesta;
     }
@@ -150,8 +150,10 @@ public class ImpEnvio {
             }
         }else{
             respuesta.setError(true);
-            respuesta.setMensaje("Por el momento no se puede consultar la informaciÃ³n.");
+            respuesta.setMensaje("Por el momento no se puede consultar la informacion.");
         }
         return respuesta;
     }
+    
+    
 }

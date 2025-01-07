@@ -29,51 +29,53 @@ import pojo.OperacionEnvio;
  *
  * @author USER
  */
-
 @Path("envio")
 public class WSEnvio {
-    
+
     @Context
     private UriInfo context;
-    
+
     public WSEnvio() {
-        
+
     }
-    
+
     @Path("obtenerEnvios")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Envio> obtenerEnvios() {
         return ImpEnvio.obtenerEnvios();
     }
-    
+
     @Path("obtenerEnviosColaborador/{idColaborador}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Envio> obtenerEnviosColaborador(@PathParam("idColaborador") Integer idColaborador) {
-        if(idColaborador > 0 && idColaborador != null)
+        if (idColaborador > 0 && idColaborador != null) {
             return ImpEnvio.obtenerEnvioConductor(idColaborador);
+        }
         throw new BadRequestException();
     }
-    
+
     @Path("obtenerPorEstatus/{idEstatus}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Envio> obtenerPorEstatus(@PathParam("idEstatus") Integer idEstatus) {
-        if(idEstatus > 0 && idEstatus != null)
+        if (idEstatus > 0 && idEstatus != null) {
             return ImpEnvio.obtenerPorEstatus(idEstatus);
+        }
         throw new BadRequestException();
     }
-    
+
     @Path("actualizarEstatus")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje actualizarEstatus(@FormParam("idEstatus") Integer idEstatus, @FormParam("id") Integer id) {
-        if(idEstatus != null && id != null)
+        if (idEstatus != null && id != null) {
             return ImpEnvio.actualizarEstatus(idEstatus, id);
+        }
         throw new BadRequestException();
     }
-    
+
     @Path("crearEnvio")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -87,7 +89,7 @@ public class WSEnvio {
             throw new BadRequestException();
         }
     }
-    
+
     @Path("actualizarEnvio")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
@@ -101,16 +103,16 @@ public class WSEnvio {
             throw new BadRequestException();
         }
     }
-    
+
     @Path("obtenerEnvioNoGuia/{numeroGuia}")
     @GET
-    @Produces(MediaType.APPLICATION_JSON) 
-    public OperacionEnvio obtenerClienteCorreo(@PathParam("numeroGuia") String numeroGuia){
+    @Produces(MediaType.APPLICATION_JSON)
+    public OperacionEnvio obtenerClienteCorreo(@PathParam("numeroGuia") String numeroGuia) {
         // TODO Validaciones
-        if((numeroGuia !=null && !numeroGuia.isEmpty())){
-        return ImpEnvio.obtenerEnvioNoGuia(numeroGuia);
+        if ((numeroGuia != null && !numeroGuia.isEmpty())) {
+            return ImpEnvio.obtenerEnvioNoGuia(numeroGuia);
         }
         throw new BadRequestException();
     }
-    
+
 }
