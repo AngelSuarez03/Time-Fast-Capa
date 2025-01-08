@@ -9,4 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         INSERT INTO Posee (motivo, nombreColaborador, tiempo, idEnvio, idEstatus) VALUES (#{motivo}, #{nombreColaborador}, #{tiempo}, #{idEnvio}, #{idEstatus});
     </insert>
     
+    <select id="obtenerHistorialPorIdEnvio" resultType="pojo.Posee">
+        SELECT p.*, e.numeroGuia, t.Estatus 
+        FROM posee p 
+        INNER JOIN Envio e ON p.idEnvio = e.id
+        INNER JOIN Estatus t ON p.idEstatus = t.id
+        WHERE p.idEnvio = #{idEnvio};
+    </select>
+    
 </mapper>

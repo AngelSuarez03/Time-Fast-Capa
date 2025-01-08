@@ -5,6 +5,7 @@
  */
 package dominio;
 
+import java.util.List;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojo.Mensaje;
@@ -39,6 +40,15 @@ public class ImpPosee {
             respuesta.setMensaje("Por el momento no se puede actualizar la información.");
         }
         return respuesta;
+    }
+    
+    public static List<Posee> obtenerHistorialPorIdEnvio(Integer idEnvio) {
+        SqlSession conexionBD = MyBatisUtil.obtenerConexion();
+        List<Posee> historiales = null;
+        if ( conexionBD != null ) {
+            historiales = conexionBD.selectList("posee.obtenerHistorialPorIdEnvio", idEnvio);
+        }
+        return historiales;
     }
     
 }
