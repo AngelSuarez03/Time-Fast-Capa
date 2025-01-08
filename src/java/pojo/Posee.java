@@ -17,18 +17,19 @@ public class Posee {
     private String tiempo;
     private Integer idEnvio;
     private Integer idEstatus;
-
+    private String estatus;
     public Posee() {
         
     }
 
-    public Posee(Integer id, String motivo, String nombreColaborador, String tiempo, Integer idEnvio, Integer idEstatus) {
+    public Posee(Integer id, String motivo, String nombreColaborador, String tiempo, Integer idEnvio, Integer idEstatus, String estatus) {
         this.id = id;
         this.motivo = motivo;
         this.nombreColaborador = nombreColaborador;
         this.tiempo = tiempo;
         this.idEnvio = idEnvio;
         this.idEstatus = idEstatus;
+        this.estatus = estatus;
     }
 
     public Integer getId() {
@@ -77,6 +78,14 @@ public class Posee {
 
     public void setIdEstatus(Integer idEstatus) {
         this.idEstatus = idEstatus;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
     
 }
